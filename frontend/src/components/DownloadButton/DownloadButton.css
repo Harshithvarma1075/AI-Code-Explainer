@@ -1,0 +1,27 @@
+.download-btn {
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: var(--color-primary);
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.download-btn:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.download-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,23 @@
+@import "./variables.css";
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+
+  background: var(--color-bg);
+  color: var(--color-text);
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+* {
+  box-sizing: border-box;
+}

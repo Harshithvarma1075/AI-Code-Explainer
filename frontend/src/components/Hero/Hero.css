@@ -1,0 +1,62 @@
+/* ===========================
+   Hero Section
+=========================== */
+
+.hero {
+  text-align: center;
+
+  padding: clamp(50px, 8vw, 70px) 20px;
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+/* ===========================
+   Heading
+=========================== */
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 700;
+
+  color: var(--color-text);
+
+  margin-bottom: 20px;
+
+  line-height: 1.2;
+
+  transition: color var(--transition-fast);
+}
+
+/* ===========================
+   Description
+=========================== */
+
+.hero p {
+  max-width: 700px;
+
+  margin: auto;
+
+  font-size: clamp(16px, 2vw, 18px);
+
+  color: var(--color-text-secondary);
+
+  line-height: 1.7;
+
+  transition: color var(--transition-fast);
+}
+
+/* ===========================
+   Small Mobile
+=========================== */
+
+@media (max-width: 400px) {
+  .hero {
+    padding: 45px 16px;
+  }
+
+  .hero h1 {
+    line-height: 1.3;
+  }
+}

@@ -1,0 +1,77 @@
+# ======================================================
+# Backend
+# ======================================================
+
+# Virtual Environment
+backend/venv/
+backend/.venv/
+backend/env/
+
+# Environment Variables
+backend/.env
+
+# Python Cache
+backend/**/__pycache__/
+backend/**/*.py[cod]
+backend/**/*.pyo
+
+# Testing / Cache
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.coverage
+backend/htmlcov/
+
+# Build
+backend/build/
+backend/dist/
+
+# Logs
+backend/*.log
+
+# Generated Chroma Database
+backend/app/database/chroma_db/
+backend/app/database/chroma.sqlite3
+
+# ======================================================
+# Frontend
+# ======================================================
+
+# Dependencies
+frontend/node_modules/
+
+# Production Build
+frontend/dist/
+
+# Environment Variables
+frontend/.env
+frontend/.env.local
+
+# Logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/pnpm-debug.log*
+
+# ======================================================
+# IDE
+# ======================================================
+
+.vscode/
+.idea/
+
+# ======================================================
+# Operating System
+# ======================================================
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ======================================================
+# Temporary Files
+# ======================================================
+
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo

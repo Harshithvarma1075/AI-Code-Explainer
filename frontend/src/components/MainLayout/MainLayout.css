@@ -1,0 +1,130 @@
+/* ===========================
+   Main Layout
+=========================== */
+
+.main-layout {
+  width: 90%;
+  margin: 40px auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+
+  align-items: start;
+}
+
+/* ===========================
+   Panels
+=========================== */
+
+.left-panel,
+.right-panel {
+  background: var(--color-surface);
+
+  border: 1px solid var(--color-border-light);
+
+  border-radius: var(--radius-lg);
+
+  padding: 20px;
+
+  box-shadow: var(--shadow-md);
+
+  height: 720px;
+
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* ===========================
+   Panel Header
+=========================== */
+
+.panel-header {
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+
+  border-bottom: 1px solid var(--color-border-light);
+
+  transition:
+    border-color var(--transition-fast);
+}
+
+.panel-header h2 {
+  margin: 0;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  color: var(--color-text);
+
+  transition: color var(--transition-fast);
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 1200px) {
+  .main-layout {
+    width: 95%;
+    margin: 30px auto;
+
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .left-panel,
+  .right-panel {
+    height: auto;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    width: calc(100% - 24px);
+    margin: 20px auto;
+    gap: 20px;
+  }
+
+  .left-panel,
+  .right-panel {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-layout {
+    width: calc(100% - 16px);
+    gap: 16px;
+  }
+
+  .left-panel,
+  .right-panel {
+    padding: 14px;
+  }
+
+  .panel-header {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+  }
+
+  .panel-header h2 {
+    font-size: 1.05rem;
+  }
+}
+
+.empty-state h2 {
+  color: var(--color-text);
+  font-weight: 700;
+  transition: color var(--transition-fast);
+}

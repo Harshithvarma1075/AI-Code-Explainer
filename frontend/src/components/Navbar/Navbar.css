@@ -1,0 +1,130 @@
+/* ===========================
+   Navbar
+=========================== */
+
+.navbar {
+  height: 70px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 clamp(16px, 5vw, 60px);
+
+  background: var(--color-surface);
+
+  border-bottom: 1px solid var(--color-border-light);
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+/* ===========================
+   Logo
+=========================== */
+
+.logo {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700;
+
+  color: var(--color-primary);
+
+  white-space: nowrap;
+}
+
+/* ===========================
+   Right Side
+=========================== */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+/* ===========================
+   Navigation Links
+=========================== */
+
+.nav-links {
+  display: flex;
+  gap: clamp(14px, 2vw, 30px);
+
+  flex-wrap: nowrap;
+}
+
+.nav-links a {
+  text-decoration: none;
+
+  color: var(--color-text-secondary);
+
+  font-weight: 500;
+
+  transition: color var(--transition-fast);
+
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+/* ===========================
+   Theme Toggle
+=========================== */
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--color-surface-secondary);
+
+  color: var(--color-text);
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 64px;
+  }
+}
+
+/* ===========================
+   Small Mobile
+=========================== */
+
+@media (max-width: 400px) {
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+}
