@@ -41,6 +41,18 @@ function ResponsePanel({ response, loading }) {
             <div className="markdown-content">
               <ReactMarkdown
                 components={{
+                  a({ href, children, ...props }) {
+                    const isCitation = href?.startsWith("#source-");
+                    return (
+                      <a
+                        href={href}
+                        className={isCitation ? "source-citation" : undefined}
+                        {...props}
+                      >
+                        {children}
+                      </a>
+                    );
+                  },
                   code({ className, children, ...props }) {
                     const match = /language-(\w+)/.exec(className || "");
 
@@ -65,19 +77,34 @@ function ResponsePanel({ response, loading }) {
               </ReactMarkdown>
             </div>
 
-            {response.sources && response.sources.length > 0 && (
+            {response.source_details && response.source_details.length > 0 ? (
               <div className="sources-section">
-                <h3>Sources Used</h3>
+                <h3>Retrieved Sources</h3>
 
                 <div className="sources-list">
-                  {response.sources.map((source, index) => (
-                    <span key={index} className="source-chip">
-                      {source}
-                    </span>
+                  {response.source_details.map((source) => (
+                    <article
+                      key={source.citation_id}
+                      id={`source-${source.citation_id}`}
+                      className="source-card"
+                    >
+                      <strong>{source.filename}</strong>
+                      <span>{source.category} · {source.chunk_id}</span>
+                      <p>{source.excerpt}</p>
+                    </article>
                   ))}
                 </div>
               </div>
-            )}
+            ) : response.sources && response.sources.length > 0 ? (
+              <div className="sources-section">
+                <h3>Sources Used</h3>
+                <div className="sources-list">
+                  {response.sources.map((source, index) => (
+                    <span key={index} className="source-chip">{source}</span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </>
         )
       ) : (

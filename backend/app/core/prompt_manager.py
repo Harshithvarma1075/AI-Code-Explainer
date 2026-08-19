@@ -43,6 +43,9 @@ Instructions:
 4. Explain concepts clearly.
 5. Use Markdown formatting.
 6. Include examples when appropriate.
+7. Cite each material claim grounded in a retrieved source using this exact
+   Markdown form: [source-id](#source-source-id). Source IDs appear beside
+   each retrieved source. Do not cite IDs that are not in the context.
 
 ==========================
 Retrieved Context
@@ -111,6 +114,12 @@ Suggest improvements following Python best practices and PEP 8.
 
 Only provide an optimized version if meaningful improvements exist.
 
+# Citations
+
+For claims that rely on retrieved documentation, cite the source in this exact
+Markdown form: [source-id](#source-source-id). Source IDs appear beside each
+retrieved source. Do not cite IDs that are not in the context.
+
 ==========================
 Retrieved Context
 ==========================
@@ -122,4 +131,26 @@ User Code
 ==========================
 
 {code}
+"""
+
+    @staticmethod
+    def build_conversation_prompt(
+        input_type: InputType,
+        user_input: str,
+        context: str,
+        history: str,
+    ) -> str:
+        """Builds a follow-up prompt while preserving the existing RAG rules."""
+
+        base_prompt = PromptManager.build_prompt(input_type, user_input, context)
+        return f"""{base_prompt}
+
+==========================
+Conversation History
+==========================
+
+{history or "No previous conversation."}
+
+Use the history only to resolve follow-up references. Treat the latest user
+input as the request to answer. Do not repeat prior answers unnecessarily.
 """

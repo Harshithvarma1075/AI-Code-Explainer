@@ -29,11 +29,12 @@ class ContextBuilder:
             source = document.metadata.get("source", "Unknown Source")
 
             filename = Path(source).name
+            citation_id = document.metadata.get("citation_id", "unknown-source")
 
             content = document.page_content.strip()
 
             block = (
-                f"========== Source: {filename} ==========\n\n"
+                f"========== Source: {filename} ({citation_id}) ==========\n\n"
                 f"{content}\n\n"
                 f"{'-' * 50}\n"
             )

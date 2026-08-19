@@ -541,7 +541,7 @@ Add the following environment variables:
 ```env
 GROQ_API_KEY=your_groq_api_key
 
-GOOGLE_API_KEY=your_google_api_key
+GEMINI_API_KEY=your_gemini_api_key
 
 CORS_ORIGINS=http://localhost:5173
 ```
@@ -566,6 +566,9 @@ This process:
 - Stores embeddings in ChromaDB.
 
 This step only needs to be repeated when the knowledge base is modified.
+
+After upgrading to the cited-source response format, run this command once to
+rebuild the collection with stable chunk citation metadata.
 
 ---
 
@@ -782,6 +785,23 @@ The application also provides several productivity features:
 - Dark mode with theme persistence
 - Toast notifications
 - Responsive interface
+- Optional streaming responses: enable **Stream** before analysis to render
+  generated text as it arrives.
+- Follow-up chat: switch the editor mode to **Follow-up chat**; the backend
+  keeps the latest eight turns for the active browser session. This memory is
+  process-local and is cleared when the backend restarts.
+
+### API extensions
+
+The existing `POST /chat` request and response remain supported. Responses now
+also include an additive `source_details` field with a stable citation ID,
+category, chunk ID, and excerpt. Model citations link to those displayed
+source excerpts.
+
+- `POST /chat/conversation` accepts `question` and an optional `session_id`,
+  returning the session ID with the normal response fields.
+- `POST /chat/stream` accepts the normal chat request and emits Server-Sent
+  Events: `meta`, `token`, `done`, or `error`.
 
 ## Application Preview
 

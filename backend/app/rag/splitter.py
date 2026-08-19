@@ -1,3 +1,6 @@
+import hashlib
+from pathlib import Path
+
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
@@ -28,21 +31,35 @@ class DocumentSplitter:
 
         chunks = self.text_splitter.split_documents(documents)
 
+        source_positions = {}
+
         for index, chunk in enumerate(chunks):
 
             source = chunk.metadata.get("source", "")
 
             source = source.replace("\\", "/")
 
-            filename = source.split("/")[-1]
+            source_path = Path(source)
+            filename = source_path.name
+            category = source_path.parent.name
+            source_key = f"{category}/{filename}"
+            chunk_index = source_positions.get(source_key, 0)
+            source_positions[source_key] = chunk_index + 1
 
-            category = source.split("/")[-2]
+            # A content-derived identifier stays meaningful across a full
+            # re-ingestion, unlike the old collection-wide numeric index.
+            chunk_id = hashlib.sha256(
+                f"{source_key}:{chunk.page_content.strip()}".encode("utf-8")
+            ).hexdigest()[:12]
 
             chunk.metadata.update(
                 {
-                    "chunk_id": index,
+                    "chunk_id": chunk_id,
+                    "chunk_index": chunk_index,
                     "filename": filename,
-                    "category": category
+                    "category": category,
+                    "source_key": source_key,
+                    "citation_id": f"src-{chunk_id}",
                 }
             )
 

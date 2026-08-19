@@ -225,3 +225,34 @@
 
   line-height: 1.5;
 }
+
+.source-citation {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 0 4px;
+  border-radius: 4px;
+  background: var(--color-surface-secondary);
+  font-size: 0.85em;
+}
+
+.source-card {
+  scroll-margin-top: 20px;
+  padding: 12px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-secondary);
+}
+
+.source-card span {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.source-card p {
+  margin: 8px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}

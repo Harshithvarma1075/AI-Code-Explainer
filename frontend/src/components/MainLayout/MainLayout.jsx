@@ -8,6 +8,7 @@ import ResponsePanel from "../ResponsePanel/ResponsePanel";
 function MainLayout() {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [sessionId, setSessionId] = useState(null);
 
   return (
     <section className="main-layout">
@@ -20,6 +21,9 @@ function MainLayout() {
           onResponse={setResponse}
           loading={loading}
           setLoading={setLoading}
+          sessionId={sessionId}
+          onSessionId={setSessionId}
+          onResetConversation={() => setSessionId(null)}
         />
       </div>
 
