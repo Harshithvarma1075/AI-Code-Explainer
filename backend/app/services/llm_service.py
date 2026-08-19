@@ -42,3 +42,21 @@ class LLMService:
             raise RuntimeError(
                 f"Groq API Error: {str(e)}"
             ) from e
+
+    def generate_response_stream(self, prompt: str):
+        """Yield generated text fragments from Groq without buffering them."""
+
+        try:
+            stream = self.client.chat.completions.create(
+                model=settings.LLM_MODEL,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.3,
+                max_tokens=2048,
+                stream=True,
+            )
+            for chunk in stream:
+                content = chunk.choices[0].delta.content
+                if content:
+                    yield content
+        except Exception as e:
+            raise RuntimeError(f"Groq streaming API Error: {str(e)}") from e
